@@ -15,12 +15,7 @@ class AppColors {
   static const Color line =Color(0xFFC9C9C9);
 
 
-
-
-
   static  Color white70 = Colors.white70;
-
-
 
 
   static const LinearGradient yellowGradient = LinearGradient(
