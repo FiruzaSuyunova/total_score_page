@@ -3,12 +3,12 @@ import 'dart:ui';
 class WinnerModel {
   final String name;
   final String imageUrl;
-  final String time;
-  final int rank;
+  final int time;
+  final int? rank;
   final int percent;
-  final double height;
-  final double weight;
-  final int colorCode;
+  final double? height;
+  final double? weight;
+  final int? colorCode;
 
   WinnerModel({
     required this.name,
@@ -16,9 +16,9 @@ class WinnerModel {
     required this.time,
     required this.rank,
     required this.percent,
-    required this.height,
-    required this.weight,
-    required this.colorCode,
+     this.height,
+     this.weight,
+     this.colorCode,
   });
 
   Color get color => Color(colorCode!);

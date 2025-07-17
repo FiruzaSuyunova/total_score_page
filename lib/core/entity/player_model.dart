@@ -1,9 +1,9 @@
 class PlayerModel{
-  final String id;
+  final int id;
   final String name;
   final String imageUrl;
-  final String time;
-  final String percent;
+  final int time;
+  final int percent;
 
   PlayerModel({
     required this.id,
