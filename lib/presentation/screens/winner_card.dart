@@ -9,10 +9,14 @@ import '../../cubit/results_cubit.dart';
 import '../../core/entity/winner_model.dart';
 
 class WinnerCard extends StatefulWidget {
+
+
   final double weight;
   final double height;
   final int color;
   final WinnerModel player;
+
+
   const WinnerCard({super.key, required this.player,required this.weight,required this.height,required this.color});
 
   @override
@@ -20,6 +24,15 @@ class WinnerCard extends StatefulWidget {
 }
 
 class _WinnerCardState extends State<WinnerCard> {
+
+  String formatDuration(int seconds) {
+    final d = Duration(seconds: seconds);
+    final hours = d.inHours.toString().padLeft(2, '0');
+    final minutes = (d.inMinutes % 60).toString().padLeft(2, '0');
+    final secs = (d.inSeconds % 60).toString().padLeft(2, '0');
+    return '$hours:$minutes:$secs';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,11 +45,12 @@ class _WinnerCardState extends State<WinnerCard> {
             imageUrl: widget.player.imageUrl,
             width: 56,
             height: 56,
+
           ),
         ),
         const SizedBox(height: 4),
 
-        ///name ,time
+        ///name
         Text(
           widget.player.name,
           style: const TextStyle(
@@ -45,14 +59,17 @@ class _WinnerCardState extends State<WinnerCard> {
             fontSize: 16,
           ),
         ),
+        ///time
         Text(
-          widget.player.time.toString(),
+          formatDuration(widget.player.time),
           style: TextStyle(
             color: AppColors.white70,
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),
         ),
+
+
         const SizedBox(height: 6),
         Stack(
           alignment: Alignment.center,
@@ -66,8 +83,8 @@ class _WinnerCardState extends State<WinnerCard> {
 
             ///rank,percent
             Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                /// rank
                 Text(
                   '${widget.player.rank}',
                   style: const TextStyle(
@@ -92,6 +109,7 @@ class _WinnerCardState extends State<WinnerCard> {
                     ),
                     width: 53,
                     height: 37,
+                    /// percent
                     child: Center(
                       child: Text(
                         '${widget.player.percent}%',

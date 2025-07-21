@@ -6,7 +6,7 @@ import '../constants/app_dimons.dart';
 
 
 ///column day hour...
-Widget customColumn( String number ,String text){
+Widget customColumn( String number,String text){
   return Column(
     mainAxisSize: MainAxisSize.min,
     children: [

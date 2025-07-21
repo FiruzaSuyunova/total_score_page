@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class AppColors {
+
   static const primary = Color(0xFFF12711);
   static const secondary = Color(0xFFF5AF19);
   static const sliderBackground = Color(0xFFF7F7F7);

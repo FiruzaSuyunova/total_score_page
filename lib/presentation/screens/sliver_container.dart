@@ -2,14 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:total_score_page/cubit/results_state.dart';
+import 'package:total_score_page/services/service.dart';
 
 import '../../cubit/results_cubit.dart';
-import '../../data/dummy/player_list.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_dimons.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/entity/player_model.dart';
 import '../../core/widgets/custom_widgets.dart';
+import '../../models/result/result_model.dart';
 import 'hover_user_tile.dart';
 
 class SliverContainer extends StatefulWidget {
@@ -21,6 +22,43 @@ class SliverContainer extends StatefulWidget {
 }
 
 class _SliverContainerState extends State<SliverContainer> {
+
+  final api=ApiService();
+  late Results results;
+
+
+  late int days = 0;
+  late int hours = 0;
+  late int minutes = 0;
+  late int seconds = 0;
+
+
+
+  @override
+  void initState() {
+    super.initState();
+    getResultsFromApi();
+  }
+
+
+  void getResultsFromApi() async {
+    final data = await api.getModel();
+    setState(() {
+      results = data!;
+      convertSeconds(results.remainingTime);
+    });
+  }
+
+
+  void convertSeconds(int totalSeconds) {
+    days = totalSeconds ~/ (24 * 60 * 60);
+    totalSeconds %= (24 * 60 * 60);
+    hours = totalSeconds ~/ (60 * 60);
+    totalSeconds %= (60 * 60);
+    minutes = totalSeconds ~/ 60;
+    seconds = totalSeconds % 60;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,6 +78,7 @@ class _SliverContainerState extends State<SliverContainer> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  /// text=> until ending of competition
                   const Text(
                     AppStrings.ending,
                     style: TextStyle(
@@ -69,33 +108,34 @@ class _SliverContainerState extends State<SliverContainer> {
                               children: [
                                 const Spacer(),
                                 customColumn(
-                                  AppStrings.eight,
+                                  '$days',
                                   AppStrings.day,
                                 ),
                                 const Spacer(),
                                 line(),
                                 const Spacer(),
                                 customColumn(
-                                  AppStrings.twelve,
+                                  '$hours',
                                   AppStrings.hour,
                                 ),
                                 const Spacer(),
                                 line(),
                                 const Spacer(),
                                 customColumn(
-                                  AppStrings.fif,
+                                  '$minutes',
                                   AppStrings.minute,
                                 ),
                                 const Spacer(),
                                 line(),
                                 const Spacer(),
                                 customColumn(
-                                  AppStrings.thi,
+                                  '$seconds',
                                   AppStrings.second,
                                 ),
                                 const Spacer(),
                               ],
                             );
+                            ;
                           },
                         ),
                       ),

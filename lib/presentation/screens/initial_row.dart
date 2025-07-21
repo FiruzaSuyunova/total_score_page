@@ -14,6 +14,7 @@ class InitialRow extends StatelessWidget {
       padding: const EdgeInsets.only(left: 12),
       child: Row(
         children: [
+          /// lest close icon container
           Container(
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.3),
@@ -30,6 +31,7 @@ class InitialRow extends StatelessWidget {
             ),
           ),
           const SizedBox(width: AppDimensions.d75),
+          /// text
           Text(
             AppStrings.totalS,
             style: const TextStyle(

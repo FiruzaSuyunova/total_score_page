@@ -18,12 +18,6 @@ class InfoBox extends StatefulWidget {
 class _InfoBoxState extends State<InfoBox> {
 
   @override
-  void initState() {
-    super.initState();
-    // fetchResults call removed to prevent infinite API loop
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 12, right: 12),

@@ -19,6 +19,14 @@ class HoverUserTile extends StatefulWidget {
 }
 
 class _HoverUserTileState extends State<HoverUserTile> {
+
+  String formatDuration(int seconds) {
+    final d = Duration(seconds: seconds);
+    final hours = d.inHours.toString().padLeft(2, '0');
+    final minutes = (d.inMinutes % 60).toString().padLeft(2, '0');
+    final secs = (d.inSeconds % 60).toString().padLeft(2, '0');
+    return '$hours:$minutes:$secs';
+  }
   bool isHovered = false;
 
   @override
@@ -44,6 +52,7 @@ class _HoverUserTileState extends State<HoverUserTile> {
                 ),
               ),
               const SizedBox(width: AppDimensions.d12),
+              ///image
               ClipRRect(
                 borderRadius: BorderRadius.circular(150),
                 child: CachedNetworkImage(
@@ -55,6 +64,7 @@ class _HoverUserTileState extends State<HoverUserTile> {
               ),
             ],
           ),
+          ///name
           title: Text(
             user.name,
             style: const TextStyle(
@@ -64,14 +74,16 @@ class _HoverUserTileState extends State<HoverUserTile> {
               letterSpacing: 0,
             ),
           ),
+          ///time
           subtitle: Text(
-            user.time.toString(),
+            formatDuration(user.time),
             style: TextStyle(
               fontSize: AppDimensions.d14,
               color: AppColors.grey,
               fontWeight: FontWeight.w400,
             ),
           ),
+          ///percent
           trailing: Text(
             user.percent.toString(),
             style: const TextStyle(

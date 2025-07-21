@@ -9,7 +9,7 @@ import 'package:total_score_page/services/service.dart';
 import '../../core/constants/app_dimons.dart';
 import 'winner_card.dart';
 import '../../cubit/results_cubit.dart';
-import '../../data/dummy/winner_list.dart';
+
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -29,6 +29,7 @@ class _MainScreenState extends State<MainScreen> {
         body: Stack(
           children: [
             Positioned.fill(
+              ///background color
               child: Container(
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -39,6 +40,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
             ),
+            /// main body
             Column(
               children: [
                 SizedBox(height: MediaQuery.of(context).padding.top + 24),
@@ -79,20 +81,18 @@ class _MainScreenState extends State<MainScreen> {
                                 } else if (state is ResultsLoaded) {
                                   final results = state.results.allResults;
 
-                                  // debugPrint("All results length: ${results.length}");
-                                  // for (var i = 0; i < results.length; i++) {
-                                  //   print("Result[$i]: ${results[i].fullName}");
-                                  // }
-
                                   if (results.length >= 0) {
+                                    /// winners row
                                     return Row(
+
+                                      mainAxisSize: MainAxisSize.min,
                                       mainAxisAlignment:
                                       MainAxisAlignment.center,
                                       crossAxisAlignment:
                                       CrossAxisAlignment.end,
                                       children: [
                                         WinnerCard(
-                                          player: results[0]
+                                          player: results[2]
                                               .toEntityWithWinnerModel(),
                                           weight: 104,
                                           height: 180,
@@ -108,7 +108,7 @@ class _MainScreenState extends State<MainScreen> {
                                         ),
                                         // 1st place
                                         WinnerCard(
-                                          player: results[0]
+                                          player: results[1]
                                               .toEntityWithWinnerModel(),
                                           weight: 104,
                                           height: 148,
@@ -125,7 +125,6 @@ class _MainScreenState extends State<MainScreen> {
                                     );
                                   }
                                 }
-
                                 return const Center(child: Text("No data"));
                               },
                             ),

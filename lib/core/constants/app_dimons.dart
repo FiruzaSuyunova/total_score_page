@@ -27,7 +27,7 @@ class AppDimensions {
   ///opacity
   static const double opacity4 = 0.4;
 
-  ///
+  ///weight or height
   static const double d1 = 1;
   static const double d5 = 5;
   static const double d10 = 10;
