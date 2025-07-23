@@ -11,13 +11,13 @@ import '../../core/entity/winner_model.dart';
 class WinnerCard extends StatefulWidget {
 
 
-  final double weight;
+  final double width;
   final double height;
   final int color;
   final WinnerModel player;
 
 
-  const WinnerCard({super.key, required this.player,required this.weight,required this.height,required this.color});
+  const WinnerCard({super.key, required this.player,required this.width,required this.height,required this.color});
 
   @override
   State<WinnerCard> createState() => _WinnerCardState();
@@ -52,7 +52,9 @@ class _WinnerCardState extends State<WinnerCard> {
 
         ///name
         Text(
-          widget.player.name,
+          widget.player.name.replaceFirst(' ', '\n'),
+          textAlign: TextAlign.center,
+
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -76,7 +78,7 @@ class _WinnerCardState extends State<WinnerCard> {
           children: [
             ///weight,height
             Container(
-              width: widget.weight,
+              width: widget.width,
               height: widget.height,
               decoration: BoxDecoration(color:Color(widget.color)),
             ),
@@ -112,7 +114,7 @@ class _WinnerCardState extends State<WinnerCard> {
                     /// percent
                     child: Center(
                       child: Text(
-                        '${widget.player.percent}%',
+                        '${widget.player.percent}',
                         style: const TextStyle(
                           fontWeight: FontWeight.w700,
                           color: AppColors.white,
@@ -130,3 +132,5 @@ class _WinnerCardState extends State<WinnerCard> {
     );
   }
 }
+
+

@@ -81,10 +81,9 @@ class _MainScreenState extends State<MainScreen> {
                                 } else if (state is ResultsLoaded) {
                                   final results = state.results.allResults;
 
-                                  if (results.length >= 0) {
+                                  if (results.length >=3) {
                                     /// winners row
                                     return Row(
-
                                       mainAxisSize: MainAxisSize.min,
                                       mainAxisAlignment:
                                       MainAxisAlignment.center,
@@ -94,7 +93,7 @@ class _MainScreenState extends State<MainScreen> {
                                         WinnerCard(
                                           player: results[2]
                                               .toEntityWithWinnerModel(),
-                                          weight: 104,
+                                          width: 104,
                                           height: 180,
                                           color: 0xFFA7B1C9,
                                         ),
@@ -102,7 +101,7 @@ class _MainScreenState extends State<MainScreen> {
                                         WinnerCard(
                                           player: results[0]
                                               .toEntityWithWinnerModel(),
-                                          weight:110 ,
+                                          width:110 ,
                                           height:212 ,
                                           color: 0xFFFCDA1B,
                                         ),
@@ -110,7 +109,7 @@ class _MainScreenState extends State<MainScreen> {
                                         WinnerCard(
                                           player: results[1]
                                               .toEntityWithWinnerModel(),
-                                          weight: 104,
+                                          width: 104,
                                           height: 148,
                                           color: 0xFFD89142,
                                         ),

@@ -103,6 +103,10 @@ class _SliverContainerState extends State<SliverContainer> {
                         padding: const EdgeInsets.all(8.0),
                         child: BlocBuilder<ResultsCubit, ResultsState>(
                           builder: (context, state) {
+                            final remaining =results.remainingTime;
+                            if(remaining==null){
+                              return SizedBox.shrink();
+                            }
                             return Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
